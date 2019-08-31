@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <title>FONT TEST</title>
@@ -17,14 +21,11 @@
             <label for="phrase">Phrase:</label>
             <textarea class="form-control" id="phrase" rows="1"></textarea>
         </div>
-        <div class="form-group">
+        <div id="previewArea"> </div>
+        <div class="form-group" id="bigFont">
             <label for="font">Font:</label>
-            <select class="form-control" id="font">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+            <select class="form-control drop-down" id="font" name="font">
+
             </select>
         </div>
         <div class="form-group">
@@ -32,14 +33,10 @@
             <input type="color" id="color" name="color" value="#e66465">
         </div>
         <button type="submit" id="preview">Preview</button>
-        <div id="previewArea"> </div>
     </form>
+    <div id="options"></div>
 
 
-    <div id="sampleDiv">
-
-
-    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 
     <script>
@@ -58,27 +55,34 @@
                 event.preventDefault();
                 $("#previewArea").empty();
                 let text = $("#phrase").val();
-                console.log(text);
                 const previewDiv = `<div id="previewDiv" style="font-size: 36px">${text}</div>`
                 $("#previewArea").append(previewDiv);
+                $(".fontClass").show();
 
             })
 
 
-            $(document).on("mouseover", ".fontClass", mouseOver);
 
             for (let i = 0; i < families.length; i++) {
                 const family = families[i].replace(/\s/g, "");
 
-                const newDiv = `<div class="${family} fontClass" style="margin:15px; font-family:${families[i]}; font-size:24px" id=${family}>${families[i]}</div>`;
-                $("#sampleDiv").append(newDiv);
+                const newDiv = `<div hidden class="${family} fontClass" id="dropDiv" value="${families[i]}" style="margin:5px; font-family:${families[i]}; font-size:18px" id=${family}>${families[i]}</div>`;
+                $("#options").append(newDiv);
             }
 
-            function mouseOver() {
+            $(".fontClass").on("mouseover", function() {
+
                 let fontFamily = $(this).css("font-family");
 
                 $("#previewDiv").css("font-family", fontFamily);
-            }
+            });
+
+            $(".fontClass").on("click", function() {
+                $(".fontClass").hide();
+
+            });
+
+
 
         });
     </script>
