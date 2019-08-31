@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <title>FONT TEST</title>
+</head>
+
+<body>
+
+
+    <h1 id="tester">My New Tattoo</h1>
+
+    <div id="sampleDiv">
+
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+
+    <script>
+        const families = ['Tangerine', 'Akronim', 'Luckiest Guy', 'Lobster', 'Wire One', 'Allura', 'Amatic SC', 'Baloo Bhaijaan', 'Bokor', 'Butterfly Kids', 'Calligraffitti', 'Caveat', 'Chilanka', 'Kristi', 'Lemonada', 'Londrina Shadow', 'Noto Sans SC', 'Shadows Into Light', 'Shadows Into Light Two', 'Snowburst One', 'Tajawal', 'Tangerine', 'ZCOOL KuaiLe', 'ZCOOL QingKe HuangYou'];
+
+        WebFont.load({
+            google: {
+                families
+            }
+        });
+
+
+        $(document).ready(function() {
+
+            $(document).on("mouseover", ".fontClass", mouseOver);
+
+
+
+            for (let i = 0; i < families.length; i++) {
+                const family = families[i].replace(/\s/g, "");
+
+                const newDiv = `<div class="${family} fontClass" style="margin:15px; font-family:${families[i]}; font-size:24px" id=${family}>${families[i]}</div>`;
+                $("#sampleDiv").append(newDiv);
+
+
+            }
+
+            function mouseOver() {
+                let fontFamily = $(this).css("font-family");
+
+                $("#tester").css("font-family", fontFamily);
+
+
+            }
+
+
+
+        });
+    </script>
+
+
+</body>
+
+</html>
