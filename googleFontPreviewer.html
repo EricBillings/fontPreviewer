@@ -12,8 +12,29 @@
 
 <body>
 
+    <form>
+        <div class="form-group">
+            <label for="phrase">Phrase:</label>
+            <textarea class="form-control" id="phrase" rows="1"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="font">Font:</label>
+            <select class="form-control" id="font">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="color">Color:</label>
+            <input type="color" id="color" name="color" value="#e66465">
+        </div>
+        <button type="submit" id="preview">Preview</button>
+        <div id="previewArea"> </div>
+    </form>
 
-    <h1 id="tester">My New Tattoo</h1>
 
     <div id="sampleDiv">
 
@@ -33,28 +54,31 @@
 
         $(document).ready(function() {
 
+            $("#preview").on("click", function(event) {
+                event.preventDefault();
+                $("#previewArea").empty();
+                let text = $("#phrase").val();
+                console.log(text);
+                const previewDiv = `<div id="previewDiv" style="font-size: 36px">${text}</div>`
+                $("#previewArea").append(previewDiv);
+
+            })
+
+
             $(document).on("mouseover", ".fontClass", mouseOver);
-
-
 
             for (let i = 0; i < families.length; i++) {
                 const family = families[i].replace(/\s/g, "");
 
                 const newDiv = `<div class="${family} fontClass" style="margin:15px; font-family:${families[i]}; font-size:24px" id=${family}>${families[i]}</div>`;
                 $("#sampleDiv").append(newDiv);
-
-
             }
 
             function mouseOver() {
                 let fontFamily = $(this).css("font-family");
 
-                $("#tester").css("font-family", fontFamily);
-
-
+                $("#previewDiv").css("font-family", fontFamily);
             }
-
-
 
         });
     </script>
