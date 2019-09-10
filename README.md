@@ -2,7 +2,7 @@
 
 The font previewer is a simple app that uses webfont loader to preview a large array of fonts on a string of text.
 
-##Getting Started
+## Getting Started
 
 1.  Clone the repository to your local machine.
 
