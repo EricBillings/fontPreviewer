@@ -12,7 +12,7 @@ The font previewer is a simple app that uses webfont loader to preview a large a
 
 1.  Populate the families array with the fonts of your choosing.
 
-1.  Open the page in a browser, enter your text, and click preview.
+1.  Open the page in a browser, enter your text or grab some from lipsum.com, and click preview.
 
 
 
